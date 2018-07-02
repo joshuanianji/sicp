@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Html exposing (Html)
 
-cuberoot : number -> number
+cuberoot : Float -> Float
 cuberoot inputCube = 
     let cube a = a * a * a
         square a = a * a
@@ -11,7 +11,7 @@ cuberoot inputCube =
         improve guess x = average guess guess (x / (square guess))
         goodEnough guess x = abs (((improve guess x) / guess) - 1) < 0.0001
 
-		cuberootIter : Float -> number -> number
+        cuberootIter : Float -> Float -> Float
         cuberootIter guess x = 
             if (goodEnough guess x) then 
                 guess 
@@ -25,4 +25,4 @@ cuberoot inputCube =
 
 main : Html msg
 main =
-    Html.text (toString (cuberoot 1000))
+    Html.text (toString (cuberoot 1000.0))
