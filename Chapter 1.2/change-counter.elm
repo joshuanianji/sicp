@@ -25,4 +25,4 @@ coinValue kindOfCoin =
 
 main : Html msg
 main =
-    Html.text (toString (coinChange 100))
+    Html.text (toString (coinChange 11))

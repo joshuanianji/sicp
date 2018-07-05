@@ -1,25 +1,11 @@
 module Main exposing (main)
 
 import Html exposing (..)
+import FoundationMath exposing(fib, exp)
 
 phi = (1 + sqrt(5)) / 2
 psi = (1 - sqrt(5)) / 2
 
--- (a to the power of b)
-exp a b = 
-    if b == 0 then
-        1
-    else 
-        a * (exp a (b - 1))
-
-
---first part
-fib n =
-    case n of
-        0 -> 0
-        1 -> 1
-        _ -> fib (n-1) + fib (n-2)
-        
 phiFunc n =
     (exp phi n) / sqrt(5)
 
