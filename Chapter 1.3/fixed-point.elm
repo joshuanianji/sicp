@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Html exposing (Html)
 
+-- finding fixed points of a cubic function
 
 fixedPoint f firstGuess =
     let
@@ -26,9 +27,6 @@ fixedPoint f firstGuess =
 
 cubic x =
     (x - 0.5) * (x - 1) * (x + 1)
-
-lmao x = 
-    cos x
 
 main : Html msg
 main =

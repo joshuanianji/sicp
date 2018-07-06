@@ -132,7 +132,7 @@ fastExpIter b n a =
     else
         fastExpIter b (n - 1) (a * b)
  
---so you can see the calculatinos and whn the javascript compiler messes up (doesn't work when it's not on ellie)
+--so you can see the calculatinos and whn the javascript compiler messes up (doesn't work when it's not on ellie as well)
 fastExpWithLogs b n a =
     if n == 0 then
         a

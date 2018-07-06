@@ -1,5 +1,7 @@
 module GoodMath exposing (..)
 
+-- a couple of importable functions
+
 square x =
     x * x
 

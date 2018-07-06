@@ -1,7 +1,8 @@
 module Main exposing (main)
 
 import Html exposing (Html)
-import Result exposing (..)
+
+-- I use the half-interval method to calculate roots of equations with bounds
 
 square x =
     x * x
@@ -67,11 +68,16 @@ halfIntervalMethod f a b =
 cubic x = 
     (exponent x 3) - (2 * x) - 3
 
+parseAnswer : Maybe Float -> String
+parseAnswer answer =
+    if answer == Nothing then
+        "There are no real roots to this equation"
+    else
+        answer
+            |> toString
+
+
 main : Html msg
 main =
-    if halfIntervalMethod cubic 1 2 == Nothing then
-        Html.text "There are no real roots to this equation"
-    else
-        halfIntervalMethod cubic 1 2
-            |> toString
-            |> Html.text
+    parseAnswer (halfIntervalMethod cubic 1 2)
+        |> Html.text

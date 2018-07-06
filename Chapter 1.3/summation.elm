@@ -2,6 +2,8 @@ module Summation exposing (main)
 
 import Html exposing (Html)
 
+-- abstract summation functions
+
 square x =
     x * x
  
