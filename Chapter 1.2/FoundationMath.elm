@@ -1,5 +1,7 @@
 module FoundationMath exposing (..)
 
+-- this is just for chapter 1.2
+
 square : number -> number
 square n = 
     n * n

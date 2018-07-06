@@ -9,6 +9,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Random
 import Debug exposing (..)
+import Modules.FoundationMath exposing (square, gcd, isEven)
 
 
 main =
@@ -122,22 +123,6 @@ toInt string =
 
 
 -- THE ACTUAL FERMAT STUFF
-
-
-square x =
-    x * x
-
-
-gcd a b =
-    if b == 0 then
-        a
-    else
-        gcd b (rem a b)
-
-
-isEven x =
-    rem x 2 == 0
-
 
 fastExpIter b n a =
     if n == 0 then
