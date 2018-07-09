@@ -3,9 +3,10 @@ module Main exposing (main)
 import Html exposing (Html)
 
 
--- repeated application of a function (doesn't work yet)
+-- repeated application of a function
 
 
+cube : Float -> Float
 cube x =
     x * x * x
 
@@ -18,12 +19,12 @@ average a b c =
 -- g is the function f is being applied to n times.
 
 
-repeatedlyApply : (Float -> Float) -> (Float -> Float) -> Int -> (Float -> Float)
-repeatedlyApply f g n =
-    if n == 0 then
-        g
+repeated : (a -> a) -> Int -> (a -> a)
+repeated f n =
+    if n == 1 then
+        f
     else
-        \x -> f (repeatedlyApply f g (n - 1) x)
+        \x -> f (repeated f (n - 1) x)
 
 
 smooth : (Float -> Float) -> (Float -> Float)
@@ -36,12 +37,13 @@ smooth f =
 
 
 nFoldSmooth : (Float -> Float) -> Int -> (Float -> Float)
-nFoldSmooth function iterationCount =
-    \x -> (repeatedlyApply smooth function iterationCount) x
+nFoldSmooth f n =
+    -- smooth will be applied to itself n times and then f will be a parameter in the resulting function
+    repeated smooth n f
 
 
 main : Html msg
 main =
-    nFoldSmooth cube 2 3
+    nFoldSmooth cube 2 4
         |> toString
         |> Html.text
