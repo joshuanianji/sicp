@@ -2,10 +2,13 @@ module Main exposing (main)
 
 import Html exposing (Html)
 
+
 -- I use the half-interval method to calculate roots of equations with bounds
+
 
 square x =
     x * x
+
 
 isEven x =
     rem x 2 == 0

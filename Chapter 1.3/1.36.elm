@@ -4,11 +4,12 @@
 
 module Main exposing (..)
 
-import Debug exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Random
+
+
+-- finding and showing the steps to the solution of x^x = 1000
 
 
 main =
@@ -61,7 +62,7 @@ update msg model =
             ( Model (toFloat inputString) [] (toFloat inputString) 0, Cmd.none )
 
         ExecuteFixedPoint ->
-            -- so if the closeEnough is true it will stop. Else it will recursively call tHe update fucntion
+            -- so if the closeEnough is true it will stop. Else it will recursively call the update fucntion
             if closeEnough model.currentNum (fixedPointSingleIteration function model.currentNum) then
                 ( Model model.number
                     (FixedPointResult

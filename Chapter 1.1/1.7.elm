@@ -4,9 +4,6 @@ import Html exposing (Html)
 
 --this is the modified newton's method
 
-square x =
-    x * x
-
 average a b =
     (a + b) / 2
     

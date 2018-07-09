@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Html exposing (Html)
 
--- I use fixed points to calculate nth roots of numbers
+-- I use fixed points to calculate nth roots of numbers. Whoa this is actually 1.45 lmao
 
 square x =
     x * x
