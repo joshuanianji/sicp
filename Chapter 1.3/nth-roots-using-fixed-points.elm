@@ -3,6 +3,7 @@ module Main exposing (main)
 import Html exposing (Html)
 
 -- I use fixed points to calculate nth roots of numbers. Whoa this is actually 1.45 lmao
+-- 1.45 wants me to do nth roots but with the repeated function for average dampening, because one average dampening doesn't work for fourth roots. I'll make another one on 1.45.elm
 
 square x =
     x * x
