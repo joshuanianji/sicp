@@ -20,8 +20,7 @@ coinValue kindOfCoin =
         2 -> 5
         3 -> 10
         4 -> 25
-        5 -> 50
-        _ -> 69
+        _ -> 50
 
 main : Html msg
 main =
