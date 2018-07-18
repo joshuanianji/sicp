@@ -5,6 +5,10 @@ import Html exposing (Html)
 import List exposing (..)
 
 
+
+-- Mapping and square list stuff
+
+
 prune : Maybe a -> a
 prune x =
     case x of

@@ -5,6 +5,10 @@ import List as List exposing (..)
 import String.Extra exposing (replace)
 
 
+
+-- this is defining the square-tree using higher order functions (such as map)
+
+
 type Tree a
     = Leaf a
     | Branch (List (Tree a))

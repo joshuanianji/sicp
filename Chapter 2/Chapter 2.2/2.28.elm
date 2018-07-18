@@ -5,6 +5,10 @@ import List as List exposing (..)
 import String.Extra exposing (replace)
 
 
+
+-- Nested lists with fringe
+
+
 type NestedList a
     = Element a
     | Nested (List (NestedList a))
