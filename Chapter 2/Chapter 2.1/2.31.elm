@@ -13,6 +13,7 @@ type Tree a
     | Branch (List (Tree a))
 
 
+square : number -> number
 square x =
     x * x
 
