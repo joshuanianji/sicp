@@ -4,12 +4,12 @@
 
 module Main exposing (..)
 
+import Debug exposing (..)
+import FoundationMath exposing (gcd, isEven, square)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Random
-import Debug exposing (..)
-import Modules.FoundationMath exposing (square, gcd, isEven)
 
 
 main =
@@ -124,6 +124,7 @@ toInt string =
 
 -- THE ACTUAL FERMAT STUFF
 
+
 fastExpIter b n a =
     if n == 0 then
         a
@@ -131,16 +132,19 @@ fastExpIter b n a =
         fastExpIter (square b) (n / 2) a
     else
         fastExpIter b (n - 1) (a * b)
- 
+
+
+
 --so you can see the calculatinos and whn the javascript compiler messes up (doesn't work when it's not on ellie as well)
+
+
 fastExpWithLogs b n a =
     if n == 0 then
         a
     else if isEven n then
-        log ((toString n) ++ " is even and b is is " ++ (toString (square b)) ++ " while a is " ++ (toString a)) fastExpWithLogs (square b) (n / 2) a
+        log (toString n ++ " is even and b is is " ++ toString (square b) ++ " while a is " ++ toString a) fastExpWithLogs (square b) (n / 2) a
     else
-        log ((toString n) ++ " is odd and b is " ++ (toString b) ++ " while a, " ++ (toString a) ++ ", is going to be multiplied b, " ++ (toString b) ++ ", to create " ++ (toString (a * b))) fastExpWithLogs b (n - 1) (a * b)
-
+        log (toString n ++ " is odd and b is " ++ toString b ++ " while a, " ++ toString a ++ ", is going to be multiplied b, " ++ toString b ++ ", to create " ++ toString (a * b)) fastExpWithLogs b (n - 1) (a * b)
 
 
 exponent b n =
@@ -150,9 +154,9 @@ exponent b n =
 expMod base exp modulus =
     if exp == 0 then
         1
-    else 
-        log ("The remainder for " ++ (toString base) ++ "^" ++ (toString exp) ++ " mod " ++(toString modulus) ++ " is ")
-        (rem (exponent base exp) modulus)
+    else
+        log ("The remainder for " ++ toString base ++ "^" ++ toString exp ++ " mod " ++ toString modulus ++ " is ")
+            (rem (exponent base exp) modulus)
 
 
 fermatTest n randNum =
@@ -162,4 +166,4 @@ fermatTest n randNum =
         tryIt a =
             expMod a n n == a
     in
-        tryIt randNum
+    tryIt randNum

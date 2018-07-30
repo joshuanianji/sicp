@@ -1,26 +1,36 @@
 module Main exposing (main)
 
+import FoundationMath exposing (gcd, square)
 import Html exposing (..)
 
-import FoundationMath exposing (square, gcd)
-       
--- bigger number first
-isDivisible a b = 
-    (rem a b) == 0
 
-findDivisor n testDivisor = 
+-- bigger number first
+
+
+isDivisible : Int -> Int -> Bool
+isDivisible a b =
+    rem a b == 0
+
+
+findDivisor : Int -> Int -> Int
+findDivisor n testDivisor =
     if square testDivisor > n then
         n
     else if isDivisible n testDivisor then
         testDivisor
     else
         findDivisor n (testDivisor + 1)
-    
-smallestDivisor n = 
+
+
+smallestDivisor : Int -> Int
+smallestDivisor n =
     findDivisor n 2
-    
-isPrime n = 
+
+
+isPrime : Int -> Bool
+isPrime n =
     n == smallestDivisor n
+
 
 main : Html msg
 main =
