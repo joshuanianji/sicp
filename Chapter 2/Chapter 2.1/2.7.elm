@@ -4,6 +4,9 @@ import Html exposing (Html)
 import Tuple exposing (..)
 
 
+-- making an interval (basically the List.range function)
+
+
 type alias Interval =
     ( Float, Float )
 

@@ -4,6 +4,9 @@ import Html exposing (Html)
 import Tuple exposing (..)
 
 
+-- area and perimeter of rectangles lol
+
+
 type alias Point =
     ( Float, Float )
 

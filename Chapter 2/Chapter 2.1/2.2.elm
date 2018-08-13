@@ -4,6 +4,9 @@ import Html exposing (Html)
 import Tuple exposing (..)
 
 
+-- points and line segments
+
+
 type alias Point =
     ( Float, Float )
 
