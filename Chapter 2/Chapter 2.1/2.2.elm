@@ -71,18 +71,22 @@ midPoint lineSegment =
 -- some baseline data
 
 
+point1 : Point
 point1 =
     makePoint 4 5
 
 
+point2 : Point
 point2 =
     makePoint 3 6
 
 
+segment1 : Line
 segment1 =
     makeSegment point1 point2
 
 
+pointMid : Point
 pointMid =
     midPoint segment1
 
