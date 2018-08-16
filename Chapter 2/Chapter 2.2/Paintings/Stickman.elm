@@ -1,16 +1,18 @@
-module Stickman exposing (stickMan)
+module Stickman exposing (stickman)
 
 import Collage exposing (..)
-import Collage.Layout exposing (at, horizontal, topLeft)
-import Collage.Render exposing (svg)
+import Collage.Layout exposing (center, horizontal, spacer, vertical)
 import Color exposing (..)
-import Html exposing (Html)
+
+
+-- the stickman module - DOESN'T WORK!! lmao the stickmen are all whack unless you add a debug function after the stickman function.
+-- maybe it's because I grouped them so differently - the center is whack and everything's kinda shifted downwards. Idk though.
 
 
 arms : Collage msg
 arms =
-    line 75
-        |> traced defaultLineStyle
+    path [ ( -60, 40 ), ( -30, 0 ), ( 30, 0 ), ( 60, -40 ) ]
+        |> traced (solid thin (uniform Color.black))
 
 
 torso : Collage msg
@@ -22,25 +24,8 @@ torso =
 
 legs : Collage msg
 legs =
-    horizontal
-        [ leftLeg
-        , rightLeg
-        ]
-        |> shift ( -12, 0 )
-
-
-rightLeg : Collage msg
-rightLeg =
-    line 50
-        |> traced defaultLineStyle
-        |> rotate (degrees -60)
-
-
-leftLeg : Collage msg
-leftLeg =
-    line 50
-        |> traced defaultLineStyle
-        |> rotate (degrees 60)
+    path [ ( -40, 0 ), ( 0, 80 ), ( 40, 0 ) ]
+        |> traced (solid thin (uniform Color.black))
 
 
 head : Collage msg
@@ -49,11 +34,12 @@ head =
         |> filled (uniform black)
 
 
-stickMan : Collage msg
-stickMan =
+stickman : Collage msg
+stickman =
     group
         [ head
         , torso |> shift ( 0, -50 )
         , arms |> shift ( 0, -50 )
-        , legs |> shift ( 0, -107 )
+        , legs |> shift ( 0, -165 )
         ]
+        |> center
