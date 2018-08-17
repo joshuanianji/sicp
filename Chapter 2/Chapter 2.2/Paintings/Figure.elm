@@ -4,7 +4,7 @@ import Collage exposing (..)
 import Color exposing (..)
 
 
--- Dad's figure mdoel that works lmao
+-- Dad's figure model that works lmao
 
 
 figure : Collage msg

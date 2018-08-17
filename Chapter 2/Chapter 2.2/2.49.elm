@@ -8,6 +8,9 @@ import Segments exposing (LineSegment)
 import Vectors exposing (..)
 
 
+-- segments -> painter function. I could not complete the last part so technically this is incomplete.
+
+
 type alias Frame =
     { origin : Vector
     , edge1 : Vector

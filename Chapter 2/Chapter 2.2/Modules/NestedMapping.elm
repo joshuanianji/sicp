@@ -3,7 +3,7 @@ module NestedMapping exposing (..)
 import List exposing (..)
 
 
---nested mappings stuff I copied from Scheme
+-- nested mappings stuff I copied from Scheme
 -- Basic functions
 
 

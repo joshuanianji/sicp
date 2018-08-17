@@ -4,7 +4,7 @@ import Segments exposing (LineSegment)
 import Vectors exposing (..)
 
 
--- I just wrote this because code I won't actually use makeSegment and startSegment irl cuz it's dumb.
+-- I just wrote this code here because I won't actually use makeSegment and startSegment irl cuz it's dumb.
 
 
 makeSegment : Vector -> Vector -> LineSegment
