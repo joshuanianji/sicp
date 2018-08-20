@@ -5,8 +5,9 @@
         ((variable? exp)
             (if (same-variable? exp var) 1 0))
         ((sum? exp)
-            (make-sum (deriv (addend exp) var)
-                   (deriv (augend exp) var)))
+            (make-sum
+                (deriv (addend exp) var)
+                (deriv (augend exp) var)))
         ((product? exp)
             (make-sum
                 (make-product 
@@ -65,7 +66,8 @@
 ;; creating the operations
 
 (define (make-sum a1 a2)
-    (cond ((=number? a1 0) a2)
+    (cond 
+        ((=number? a1 0) a2)
         ((=number? a2 0) a1)
         ((and (number? a1) (number? a2)) 
             (+ a1 a2))
@@ -75,24 +77,27 @@
     (and (number? exp) (= exp num)))
 
 (define (make-product m1 m2)
-    (cond   ((or (=number? m1 0) 
-                (=number? m2 0)) 
-                0)
-            ((=number? m1 1) m2)
-            ((=number? m2 1) m1)
-            ((and (number? m1) (number? m2)) 
-                (* m1 m2))
-            (else (list m1 '* m2))))
+    (cond   
+        ((or (=number? m1 0) 
+            (=number? m2 0)) 
+            0)
+        ((=number? m1 1) m2)
+        ((=number? m2 1) m1)
+        ((and (number? m1) (number? m2)) 
+            (* m1 m2))
+        (else (list m1 '* m2))))
 
 (define (make-exponentiation base exponent)
-  (cond ((=number? exponent 0) 1)
+    (cond 
+        ((=number? exponent 0) 1)
         ((=number? exponent 1) base)
         ((and (number? base) (number? exponent)) 
             (exponentiation base exponent))
         (else (list base '** exponent))))
 
 (define (exponentiation base power)
-    (cond ((= power 0) 1)
+    (cond 
+        ((= power 0) 1)
         ((= power 1) base)
         (else
             (* base (exponentiation base (- power 1))))))
