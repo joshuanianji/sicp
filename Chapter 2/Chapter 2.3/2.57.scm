@@ -1,20 +1,22 @@
-; you can do stuff like (deriv '(x * 3) 'x) instead of having to do (deriv '(* x 3) 'x) but you can only have two terms per operator lol.
+; able to do the operations with an arbitrary amount of terms
 
 (define (deriv exp var)
     (cond ((number? exp) 0)
         ((variable? exp)
             (if (same-variable? exp var) 1 0))
+
         ((sum? exp)
             (make-sum (deriv (addend exp) var)
-                   (deriv (augend exp) var)))
+                (deriv (augend exp) var)))
+
         ((product? exp)
             (make-sum
                 (make-product 
                     (multiplier exp)
                     (deriv (multiplicand exp) var))
-                (make-product 
-                    (deriv (multiplier exp) var)
-                    (multiplicand exp))))
+            (make-product 
+                (deriv (multiplier exp) var)
+                (multiplicand exp))))
 
         ((exponentiation? exp)
             (make-product
@@ -39,37 +41,41 @@
 
 ;; sum
 (define (sum? x)
-    (and (pair? x) (eq? (cadr x) '+)))
+    (and (pair? x) (eq? (car x) '+)))
 
-(define (addend s) (car s))
+(define (addend s) (cadr s))
 
-(define (augend s) (caddr s))
+
+(define (augend expr) 
+    (fold-right make-sum 0 (cddr expr)))
+  
 
 ;; product 
 (define (product? x)
-    (and (pair? x) (eq? (cadr x) '*)))
+    (and (pair? x) (eq? (car x) '*)))
 
-(define (multiplier p) (car p))
+(define (multiplier p) (cadr p))
 
-(define (multiplicand p) (caddr p))
+(define (multiplicand p)  
+   (fold-right make-product 1 (cddr p))) 
 
 ;; exponentiation
 
 (define (exponentiation? x)
-    (and (pair? x) (eq? (cadr x) '**)))
+    (and (pair? x) (eq? (car x) '**)))
 
-(define (base s) (car s))
+(define (base s) (cadr s))
 
 (define (exponent s) (caddr s))
 
 ;; creating the operations
 
 (define (make-sum a1 a2)
-    (cond ((=number? a1 0) a2)
-        ((=number? a2 0) a1)
-        ((and (number? a1) (number? a2)) 
-            (+ a1 a2))
-        (else (list a1 '+ a2))))
+    (cond   ((=number? a1 0) a2)
+            ((=number? a2 0) a1)
+            ((and (number? a1) (number? a2)) 
+                (+ a1 a2))
+            (else (list '+ a1 a2))))
 
 (define (=number? exp num)
     (and (number? exp) (= exp num)))
@@ -80,19 +86,21 @@
                 0)
             ((=number? m1 1) m2)
             ((=number? m2 1) m1)
-            ((and (number? m1) (number? m2)) 
+            ((and (number? m1) (number? m2))
                 (* m1 m2))
-            (else (list m1 '* m2))))
+            (else (list '* m1 m2))))
 
 (define (make-exponentiation base exponent)
-  (cond ((=number? exponent 0) 1)
-        ((=number? exponent 1) base)
-        ((and (number? base) (number? exponent)) 
-            (exponentiation base exponent))
-        (else (list base '** exponent))))
+    (cond   ((=number? exponent 0) 1)
+            ((=number? exponent 1) base)
+            ((and (number? base) (number? exponent)) 
+                (expt base exponent))
+            (else (list '** base exponent))))
 
-(define (exponentiation base power)
-    (cond ((= power 0) 1)
-        ((= power 1) base)
-        (else
-            (* base (exponentiation base (- power 1))))))
+
+;; fold right!!
+(define (fold-right op initial sequence)
+    (if (null? sequence)
+        initial
+        (op (car sequence)
+	        (fold-right op initial (cdr sequence)))))

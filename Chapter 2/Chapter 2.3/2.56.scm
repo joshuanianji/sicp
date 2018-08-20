@@ -1,5 +1,7 @@
 ;; derivatives and stuff (only supports addition (thus subtraction), multiplication (maybe division?), and exponentiation with two inputs)
 
+; put the operation before the inputs
+
 (define (deriv exp var)
   (cond ((number? exp) 0)
         ((variable? exp)
